@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    window.onload = function () {
+        var div1 = document.getElementById("div1");
+        function drag(el) {
+            el.onmousedown = function (ev) {
+                var oevent = ev || event;
+
+                var distanceX = oevent.pageX - el.offsetLeft;
+                var distanceY = oevent.pageY - el.offsetTop;
+
+                document.onmousemove = function (ev) {
+                    var oevent = ev || event;
+                    el.style.left = oevent.pageX - distanceX + 'px';
+                    el.style.top = oevent.pageY - distanceY + 'px';
+                };
+                document.onmouseup = function () {
+                    console.log(el.style.top);
+                    let a=el.style.top.substr(0,el.style.top.length-2);
+                    console.log(a);
+                    if(a>100){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }else {
+                        el.style.left =0+ 'px';
+                        el.style.top = 0+ 'px';
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                };
+            }
+        }
+        drag(div1)
+    }
+</script>
+</body>
+</html>
