@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe src="http://localhost:3004/b.html" frameborder="0" id="frame" onload="load()"></iframe>
+<script>
+   function load() {
+       let frame = document.getElementById('frame');
+       frame.contentWindow.postMessage('wo nai ni ','http://localhost:3004');
+   }
+   window.onmessage =function (e) {
+       console.log(e.data);
+   }
+</script>
+</body>
+</html>

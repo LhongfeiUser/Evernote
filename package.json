@@ -1,0 +1,22 @@
+{
+  "name": "evernote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "声明展开和剩余参数.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LhongfeiUser/evernote.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LhongfeiUser/evernote/issues"
+  },
+  "homepage": "https://github.com/LhongfeiUser/evernote#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>wa hhhhh</h1>
+<script>
+    window.onmessage = function (e) {
+        console.log(e.data);
+        e.source.postMessage('不要',e.origin)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //get请求
+ /*   let xhr = new XMLHttpRequest;
+    xhr.open('GET','http://localhost:4001/getDate',true);
+    xhr.setRequestHeader('name','nszz');//设置请求头
+    xhr.onreadystatechange =function () {
+        if(xhr.readyState === 4){
+            if(xhr.status>=200&&xhr.status<300||xhr.status===304){
+                console.log(xhr.response);
+            }
+        }
+    };
+    xhr.send()*/
+
+
+   //put请求
+    let xhr = new XMLHttpRequest;
+    document.cookie ='name=nszz';
+    xhr.withCredentials =true; //允许携带凭证（cookie）
+    xhr.open('PUT','http://localhost:4001/getDate',true);
+    xhr.setRequestHeader('name','nszz');//设置请求头
+    xhr.onreadystatechange =function () {
+        if(xhr.readyState === 4){
+            if(xhr.status>=200&&xhr.status<300||xhr.status===304){
+                console.log(xhr.response);
+                console.log(xhr.getResponseHeader('name'));
+            }
+        }
+    };
+    xhr.send()
+</script>
+</body>
+</html>
