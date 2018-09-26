@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--meta:vp-->
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>{{a}}</div>
+    <div>{{b}}</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let data ={
+        a:1,
+        b:''
+    }
+    let vm = new Vue({
+        el:'#app',
+        data:data,
+    });
+    vm.a =3;
+    vm.b = 'wocaliao';
+    let obj = {
+        foo: 'bar'
+    };
+    Object.freeze(obj); //方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。该方法返回被冻结的对象。
+    console.log(vm.$data === data);// => true
+    console.log(vm.$el === document.getElementById('app'));// => true
+
+    // $watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+        console.log('new',newValue);
+        console.log('old',oldValue);
+        // 这个回调将在 `vm.a` 改变后调用
+    })
+</script>
+</body>
+</html>

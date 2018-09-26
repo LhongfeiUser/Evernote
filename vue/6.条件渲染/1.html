@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-if="ok">yes</h1>
+    <h1 v-else="no">no</h1>
+    <template id="one" v-if="loginType === 'username'">
+        <label for="">username</label>
+        <input type="text" placeholder="输入用户名称" key="input-username">
+    </template>
+    <template id="two" v-else>
+        <label for="">email</label>
+        <input type="text" placeholder="输入邮箱" key = 'input-email'>
+    </template>
+    <button @click=loginTypeFn>click</button>
+
+    <h1 v-show="1">Hello!</h1> <!--只是改变display属性显隐-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级。
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ok: 0,
+            loginType:'username'
+        },
+        methods:{
+            loginTypeFn(){
+                console.log(1);
+                if(this.loginType==='username'){
+                    this.loginType='';
+                }else{
+                    this.loginType ='username'
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

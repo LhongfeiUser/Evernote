@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class 与 Style 绑定</title>
+    <style>
+        .thisClass {
+            font-size: 20px;
+        }
+        .more {
+            color: blue;
+        }
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--对象语法-->
+    <div :class="{ thisClass : active, more:isMore}">行内样式</div>
+    <div :class="easyStyle">放到data中</div>
+    <div :class="computedClass">返回计算属性的对象</div>
+    <!--数组语法-->
+    <div :class ="[activeClass,errorClass]">数组绑定</div>
+    <div :class="[{ active: isActive }, errorClass]">isActive为true,active添加成功</div>
+    <!--组件-->
+    <my-component></my-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // 用 v-bind 处理它们：只需要通过表达式计算出字符串结果即可 表达式结果的类型除了字符串之外，还可以是对象或数组。
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            active: false,//true
+            isMore: true,
+            easyStyle: {
+                thisClass: true,
+                more: true
+            },
+            isActive:true,
+            err:null,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+
+        },
+        computed:{
+            computedClass(){
+                return {
+                    active:this.isActive && !this.err,
+                    more:this.err && this.err.type === 'fatal'
+                }
+            }
+        },
+        component:{
+
+        }
+    });
+</script>
+</body>
+</html>

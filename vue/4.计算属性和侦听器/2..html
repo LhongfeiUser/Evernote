@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侦听</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{fullName}}</h2>
+    <input type="text" v-model='question'>
+    <p>{{answer}}</p>
+    <img :src="image" alt="">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: '大球',
+            lastName: '小球',
+            question: '',
+            answer: '我回答个球',
+            image:''
+        },
+        watch: {
+            firstName(val) {
+                console.log(val);
+                this.fullName = val + '' + this.lastName;
+            },
+            lastName(val) {
+                console.log(val);
+                this.fullName = this.lastName + '' + val;
+            },
+            question(newQuestion, oldQuestion) {
+                this.answer = '等待你输入完成';
+                this.dbfn()
+            }
+        },
+        created() {
+            this.dbfn = _.debounce(this.getAnswer, 500)
+        },
+        computed: {
+            fullName() {
+                return this.firstName + '' + this.lastName;
+            },
+        },
+        methods: {
+            getAnswer() {
+                if (this.question.indexOf('?') === -1) {
+                    this.answer = '请重新换一个问题谢谢:-)';
+                    return
+                }
+                this.answer = 'pending...';
+                axios.get('https://yesno.wtf/api').then(response=>{
+                    console.log(response.data);
+                    this.answer =  _.capitalize(response.data.answer);
+                    this.image = response.data.image
+                }).catch(err=>{
+                    this.answer = '不能拿到API'+err;
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

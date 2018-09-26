@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>Message:{{mgs}}</div>
+    <div>Message: <span v-html="mgs"></span></div> <!--动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //插值 v-html
+    //指令：v-bind v-on
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            mgs:'hlwd'
+        }
+    })
+</script>
+</body>
+</html>

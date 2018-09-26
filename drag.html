@@ -22,7 +22,6 @@
         function drag(el) {
             el.onmousedown = function (ev) {
                 var oevent = ev || event;
-
                 var distanceX = oevent.pageX - el.offsetLeft;
                 var distanceY = oevent.pageY - el.offsetTop;
 

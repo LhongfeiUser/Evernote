@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="num in computedNumbers">  <!--计算属性过滤-->
+            {{num}}
+        </li>
+        <li v-for="n in even(numbers)">  <!--方法过滤-->
+            {{n}}
+        </li>
+        <li v-for="todo in todos" v-if="!todo.isComplete">有没有</li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            numbers:[1,2,3,4,5,6,7],
+            todos:[
+                {isComplete:true},
+            ]
+        },
+        computed:{
+            computedNumbers(){
+                return this.numbers.filter(number=>{
+                    return number%2 ===0;
+                })
+            }
+        },
+        methods:{
+            even(numbers){
+                return numbers.filter(number=>{
+                    return number%3 === 0||number%2===0;
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

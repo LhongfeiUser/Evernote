@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in items">
+            {{item.message}}
+        </li>
+        <!--带索引-->
+        <li v-for="(item,index) in items">
+            {{index}}-{{item.message}}
+        </li>
+        <!--迭代对象数据-->
+        <li v-for="(value,key,index) in object">
+            {{index}}  - {{key}}: {{value}}
+        </li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            items:[
+                {message:'Foo'},
+                {message:'Juu'},
+                {message:'list'}
+            ],
+            object:{
+                name:'打球',
+                age:'30',
+                address:'双星小区'
+            }
+        }
+    })
+</script>
+</body>
+</html>
